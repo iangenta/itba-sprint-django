@@ -7,8 +7,8 @@ class Tarjeta(models.Model):
     cvv = models.IntegerField(db_column='CVV')  # Field name made lowercase.
     fecha_de_otorgamiento = models.DateField(db_column='Fecha de otorgamiento')  # Field name made lowercase. Field renamed to remove unsuitable characters.
     fecha_de_expiracion = models.DateField(db_column='Fecha de expiracion')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    credito_debito = models.IntegerField(db_column='Credito/debito')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    marca_tarjeta = models.IntegerField(db_column='Marca tarjeta')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    credito_debito = models.CharField(max_length=10,db_column='Credito/debito')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    marca_tarjeta = models.CharField(max_length=20,db_column='Marca tarjeta')  # Field name made lowercase. Field renamed to remove unsuitable characters.
 
     class Meta:
         managed = False
