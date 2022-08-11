@@ -2,12 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+
 class Cuenta(models.Model):
-    cuenta_id = models.IntegerField(primary_key=True, default="cuenta_id")
-    cliente_id = models.IntegerField( default="cliente_id")
-    balance = models.IntegerField(default="balance")
-    tipo_cuenta = models.CharField(max_length=50, default="tipo_cuenta")
-    
+    account_id = models.AutoField(primary_key=True)
+    customer_id = models.IntegerField()
+    balance = models.IntegerField()
+    iban = models.CharField(max_length=50,blank=True, null=True)
+    tipo_cuenta = models.CharField(max_length=50,blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cuenta'
+
 class Movimiento(models.Model):
     movimiento_id = models.IntegerField(primary_key=True, default="movimiento_id")
     numero_cuenta = models.IntegerField(default="numero_cuenta")
