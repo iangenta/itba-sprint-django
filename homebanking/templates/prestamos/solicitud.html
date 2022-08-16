@@ -1,4 +1,4 @@
-{% extends 'layout' %}
+{% extends 'layout/layout.html' %}
 
 {% block title %}
 prestamos pre-aprobados
@@ -10,16 +10,14 @@ prestamos pre-aprobados
 {% endblock %}
 
 {%block content%}
-<form method = 'POST'>
+<form method = 'POST' class='form-control '>
 
 {% csrf_token %}
     {{form.as_p}}
-    <button type='submit'>
+
+    <button type='submit' class='btn btn-primary' style ='background-color:#2f86b8'>Solicitar</button>
 
 </form>
 {% endblock %}
 
 
-{%block footer%}
-<h4>bloque footer</h4>
-{% endblock %}
