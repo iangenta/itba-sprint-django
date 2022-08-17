@@ -14,6 +14,9 @@ class Cliente(models.Model):
     tipo_cliente = models.CharField(max_length=50,blank=True, null=True)
     numero_tarjeta = models.CharField(max_length=50,blank=True, null=True)
     
+    def str(self):
+        return self.customer_name + " " + self.customer_surname
+    
     class Meta:
         managed = False
         db_table = 'cliente'

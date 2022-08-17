@@ -18,7 +18,7 @@ def index_prestamos(request):
 
 def solicitud(request):
 
-    usuario = Cliente.objects.get(customer_dni=User.get_username(request.user))
+    usuario = Cliente.objects.get(customer_dni = User.get_username(request.user))
 
     form = PrestamoForm()
     tipo_cliente = usuario.tipo_cliente
@@ -32,7 +32,7 @@ def solicitud(request):
             prestamo_max = 500000
         case 'GOLD':
             prestamo_max = 300000
-        case 'BLACK':
+        case 'CLASSIC':
             prestamo_max = 100000
 
     if request.method == 'POST':
