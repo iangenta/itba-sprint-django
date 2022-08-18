@@ -19,6 +19,7 @@ def index_prestamos(request):
 def solicitud(request):
 
     usuario = Cliente.objects.get(customer_name = User.get_username(request.user))
+    #usuario2 = Cuenta.objects.get(customer_id = User.get_username(request.user))
 
     form = PrestamoForm()
     tipo_cliente = usuario.tipo_cliente
@@ -28,11 +29,11 @@ def solicitud(request):
     cuenta = filtro_cuenta.filter(account_id=filtro_cuenta[0].account_id)
 
     match tipo_cliente:
-        case 'BLACK':
+        case 'Black':
             prestamo_max = 500000
-        case 'GOLD':
+        case 'Gold':
             prestamo_max = 300000
-        case 'CLASSIC':
+        case 'Classic':
             prestamo_max = 100000
 
     if request.method == 'POST':
@@ -49,14 +50,16 @@ def solicitud(request):
             loan_date = prestamo.loan_date
 
             if loan_total >= prestamo_max:
-                return render(request, 'prestamos/solicitud.html', {'form': form, })
+                return render(request, 'prestamos/prestamo_denegado.html', {'form': form, })
 
-        else:
-            balance_final = cuenta[0].balance + loan_total
-            cuenta.update(balance=balance_final)
-            print('valido')
-            Prestamo.objects.create(
-                loan_total=loan_total, loan_date=loan_date, loan_type=loan_type, customer_id=id_cliente)
+            else:
+                balance_final = cuenta[0].balance + loan_total
+                cuenta.update(balance=balance_final)
+                print('valido')
+                Prestamo.objects.create(
+                    loan_total=loan_total, loan_date=loan_date, loan_type=loan_type, customer_id=id_cliente)
+                return render(request, 'prestamos/prestamo_exitoso.html', {'form': form},)
+            
 
     return render(request, 'prestamos/solicitud.html', {'form': form},)
 # 'error':True
