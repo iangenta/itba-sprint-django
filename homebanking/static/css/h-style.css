@@ -136,7 +136,7 @@ button {
 
   backdrop-filter:blur(7px);
   box-shadow: 4px 4px 4px rgba(68,68,68, 0.6);
-  cursor: pointer;
+
 }
 .visa{
   width: 80px;
