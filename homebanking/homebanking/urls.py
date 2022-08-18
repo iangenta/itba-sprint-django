@@ -23,4 +23,5 @@ path('cuenta/', include ('apps.cuentas.urls'), name='cuenta'),
 path('tarjeta/', include ('apps.tarjetas.urls'), name='tarjeta'),
 path('prestamo/', include ('apps.prestamos.urls'), name='prestamo'),
 path('login/', include ('apps.login.urls'), name='login'),
+path('', include ('apps.home.urls'), name='home'),
 ]

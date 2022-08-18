@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'apps.cuentas',    
     'apps.tarjetas',
     'apps.prestamos',
-    'apps.login', 
+    'apps.login',
+    'apps.home', 
     'crispy_forms',   
 ]
 
