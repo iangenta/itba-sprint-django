@@ -18,14 +18,14 @@ def index_prestamos(request):
 
 def solicitud(request):
 
-    usuario = Cliente.objects.get(customer_dni = User.get_username(request.user))
+    usuario = Cliente.objects.get(customer_name = User.get_username(request.user))
 
     form = PrestamoForm()
     tipo_cliente = usuario.tipo_cliente
     id_cliente = usuario.customer_id
 
     filtro_cuenta = Cuenta.objects.filter(customer_id=id_cliente)
-    cuenta = filtro_cuenta.filter(account_id=cuenta[0].account_id)
+    cuenta = filtro_cuenta.filter(account_id=filtro_cuenta[0].account_id)
 
     match tipo_cliente:
         case 'BLACK':
