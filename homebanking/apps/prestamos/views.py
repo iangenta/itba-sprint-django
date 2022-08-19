@@ -19,13 +19,11 @@ def index_prestamos(request):
 def solicitud(request):
 
     usuario = Cliente.objects.get(customer_name = User.get_username(request.user))
-    #usuario2 = Cuenta.objects.get(customer_id = User.get_username(request.user))
-
-    form = PrestamoForm()
     tipo_cliente = usuario.tipo_cliente
-    id_cliente = usuario.customer_id
+    customerID = usuario.customer_id
+    form = PrestamoForm()
 
-    filtro_cuenta = Cuenta.objects.filter(customer_id=id_cliente)
+    filtro_cuenta = Cuenta.objects.filter(customer_id=customerID)
     cuenta = filtro_cuenta.filter(account_id=filtro_cuenta[0].account_id)
 
     match tipo_cliente:
@@ -55,9 +53,12 @@ def solicitud(request):
             else:
                 balance_final = cuenta[0].balance + loan_total
                 cuenta.update(balance=balance_final)
-                print('valido')
+                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", usuario.customer_id)
                 Prestamo.objects.create(
-                    loan_total=loan_total, loan_date=loan_date, loan_type=loan_type, customer_id=id_cliente)
+                    loan_total=loan_total,
+                    loan_date=loan_date,
+                    loan_type=loan_type, 
+                    customer_id = customerID)
                 return render(request, 'prestamos/prestamo_exitoso.html', {'form': form},)
             
 
